@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Website</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .faq {
+            margin-bottom: 20px;
+        }
+
+        button.accordion {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button.accordion:hover {
+            background-color: #555;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .panel p {
+            color: #666;
+        }
+
+        .active + .panel {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .active + .panel p {
+            display: block;
+        }
+
+        /* Chat box styles */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            z-index: 9999;
+        }
+
+        .chat-header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            padding: 10px;
+            height: 200px; /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            background-color: #f2f2f2;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .chat-input-container {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        .chat-send {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .chat-send:hover {
+            background-color: #555;
+        }
+
+        .accordion {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .panel p {
+            color: #666;
+        }
+
+        .accordion:hover {
+            background-color: #555;
+        }
+
+        .faq .active + .panel {
+            display: block;
+            max-height: 500px; /* Adjust the max-height as needed */
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Library</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>Welcome to our library! We are dedicated to providing a wide range of books, resources, and services to our community. Our collection includes fiction, non-fiction, periodicals, reference materials, and more. Visit us to explore our vast selection and enrich your reading experience.</p>
+
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <p>Here are some of the services we offer:</p>
+    <ul>
+        <li>Book lending: Borrow books for free with your library card.</li>
+        <li>Research assistance: Our knowledgeable staff can help you find information for your projects and studies.</li>
+        <li>Computer and internet access: Use our computers and Wi-Fi for research, communication, and learning.</li>
+        <li>Events and workshops: Participate in book clubs, author events, workshops, and more.</li>
+    </ul>
+</section>
+
+<section id="faq">
+    <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+            <button class="accordion">How do I borrow books?</button>
+            <div class="panel">
+                <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+            </div>
+        </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+    <div class="faq">
+        <button class="accordion">How do I borrow books?</button>
+        <div class="panel">
+            <p>To borrow books, you need to become a member of our library. Membership is free, and you can apply at the front desk. Bring a valid ID and proof of address to complete the registration process.</p>
+        </div>
+    </div>
+
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or inquiries, feel free to contact us:</p>
+    <p>Email: info@library.com</p>
+    <p>Phone: 123-456-7890</p>
+    <p>Address: 123 Library Street, City, Country</p>
+
+</section>
+
+<footer>
+    <p>&copy; 2024 Our Library</p>
+</footer>
+
+<div class="chat-container" id="chat-container">
+    <div class="chat-header" id="chat-header">
+        Chat
+        <button id="minimizeBtn">-</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+        <!-- Chat messages will be added here -->
+    </div>
+    <div class="chat-input-container">
+        <input type="text" class="chat-input" placeholder="Type your message..." id="user-input">
+        <button class="chat-send" id="sendBtn">Send</button>
+    </div>
+</div>
+<script>
+    // JavaScript to toggle active class
+    const accordions = document.querySelectorAll('.accordion');
+
+    accordions.forEach(accordion => {
+        accordion.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
+        });
+    });
+</script>
+<script type="module">
+    
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+
+    const API_KEY = "AIzaSyCbq4w1GfU377kjOXvu8h48Sb_wCC2MliI";
+    const genAI = new GoogleGenerativeAI(API_KEY);
+
+    const chatContainer = document.getElementById("chat-container");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("sendBtn");
+
+    let chat;
+
+    async function initChat() {
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        chat = model.startChat({
+            history: [
+            {
+              role: "user",
+              parts: [{ text: "If you want to know more about Green library (Green Library, GREEN LIBRARY), please visit this website. https://greenlibrary.rsu.ac.th/. You are Sam, a friendly assistant working in the Rangsit University Library. You will only answer questions about RSU, RSU Library, Green Library and only related to RSU or Rangsit University. RSU is short for Rangsit University. Your job is to answer the user's questions about the library. The location of the library is :52/347 Muang-Ake, Phaholyothin Road, Lak-Hok, Muang, Pathumthani 12000 Thailand. The history of the library is : Rangsit University attaches great importance to the library. Therefore, the university has built a library building.The library began construction on December 23, 1987, which has an area of 9,300 square meters that divides the area about 1,000 square meters for other departments on the first floor and another 8,000 square meters for the library which the capacity of this room can hold a maximum of 2,000 people and can contain four millions of books. The library was completed in September 1989. This library has a total budget of approximately 37 million baht. The location of library is Building 7. This makes it can provide information resources, and users can quickly and conveniently access information.The library building was officially opened on November 9, 1989, by Mr. Tawich Klinprathum, Minister of University Affairs at that time.In the year 1987, the university approved the library as an institution with an equivalent status to the faculty. By name \"Office of The Library.\" The university has appointed a person to be the director who graduated master's degree in the Faculty of Library Science in April 1987. Due to the service has expanded widely, with the introduction of information technology in operations, therefore, requesting to use the new name in Thai and English language as “Rangsit University Library and Information Center” which has been approved in the years 1995-2002. After that, returning to using the original name “Rangsit University Library.\".  The Library is an academic supporting unit which are divided into 5 departments as follows   1. Technical Department   2. Services Department   3. Development Department   4. Archives Department   5. Office of the Secretary. There are a total of 23 staff working at the library in different departments. The opening hours of the library are :  During the semesters, open from Monday - Friday Open 8.30 am - 9.00 pm and on  Saturday-Sunday Open from 9.00 am - 17.00 pm , It is closed during Public holidays. During Summer, it is open from Monday - Friday  08.30 a.m. - 07.00 p.m. and closed on  Saturday-Sunday, It is closed during Public holidays. The Library rules are  1. Enter the library in proper outfit   2. Keep low voice avoid disturbance to others   3. Public user(who is not a student) is required citizen ID card   4. Turn off or set all communication device silent or non-ringing   5. Food and drinks are not allowed   6. Smoking is prohibited   7. Taking a library material out of the premises without and official check out transaction is considered a punitive action   8. Allow staffs to check your belongings at the exit. To get into the library you need your student Id card(used instead of a library card). if you didn't bring you student id card you can fill in your name and faculty in the book that is provided on the table before you enter the library. To reserve(check out) a book you need to either show your student id card or if you forgot it you can show a picture of your student id card at the counter where there will be the library staff helping you. There are computers in the library where you can also search for the books you want by typing in the name of the book, author or genre. The library also give access to e-books and audiobooks, you can download them either on the computer in the library or on the library's website. To access the library website: you can enter this link (library.rsu.ac.th) on google and to log into the website the user name is your Student ID and the password is 1234. The borrowing period and fines are as follows: For Undergraduate students and staff they can borrow up to 5 books at a time and the borrowing period for each book is 7 days while for master's degree students they can borrow up to 10 books at a time and the period for each book is 30 days. You can extend the period up to extra 21 days on the library website. if you didn't return the book when the borrowing period is up you will be fined 10 baht for each day. There is no particular library wifi but you can access the RSU Server by logging into your own Wifi with your Student ID and passport number. The RSU Library offer varities of topics including academic journey and scholarly articles. If you have topic of your own, you can check it at the Library Website. You can donate your own books to Rangsit University. To donate with creditential, you have to give your student ID and your major at the RSU Library Administrator along with the title of the books that you are donating. The library does not have separate way for patrons with disabilities. The existing library system can be helpful for not only partons with disabilities but also for those who wish to used library system online. You can ask the library administrator at Floor 3rd and 5th for your things and they can check the security camera as well as store your belongings that you left . Currently, there aren't any system for leaving a review or feedback for our library system, on one hand, doesn't also have any room for suggestions but you can check it with library administrator.  The library supports academic integrity. We offer resources, citation guides, and librarian assistance to help students understand and avoid plagiarism. There are restrictions on food and drink in the library. To maintain a clean and quiet study environment, only bottled water is allowed. Stay informed about library closures or special events by clicking our RSU library’s website. Sorry, the library doesn’t offer assistance with technology, such as setting up your laptop or using software. You can access historical archives and special collections in the library. These materials are typically available for research purposes, and access may be granted by contacting at the information desk. Seat reservations during peak times are not available. Seating is on a first-come, first-served basis. We encourage you to plan your visit accordingly and arrive early to secure a seat. If you have specific concerns, please contact the library staff for assistance. Thank you for your understanding. The library provides language learning resources to support your academic journey. However, we do not currently host language practice groups. Explore our language learning materials and resources available in the library to enhance your language skills. You cannot request materials from other campuses or affiliated libraries. The library provides assistance with research projects and literature reviews. Our knowledgeable librarians can offer guidance on navigating resources, conducting effective searches, and accessing relevant materials. Feel free to reach out to the library staff for personalized support with your academic endeavors. If the question from the user does not relate to the rangsit university library please give this answer(Please ask questions related to the Rangsit University library, RSU Green Library). If you want to know more about Green library, please visit this website. https://greenlibrary.rsu.ac.th/"}],
+            },
+            {
+              role: "model",
+              parts: [{ text: "Please ask questions related to the Rangsit University library."}],
+            },
+                {
+                    role: "user",
+                    parts: [{ text: "If you want to know more about Green Library, please visit this website. https://greenlibrary.rsu.ac.th/"}],
+                },
+                {
+                    role: "model",
+                    parts: [{ text: "The rsu library website is https://library.rsu.ac.th/."}],
+                },
+            ]
+        });
+    }
+    // Add event listener to the send button
+sendBtn.addEventListener("click", async () => {
+    // Get the user's input message and trim any whitespace
+    const userMessage = userInput.value.trim();
+    // Check if the message is empty, if so, return early
+    if (userMessage === "") return;
+
+    // Add the user's message to the chat interface
+    addMessage("user", userMessage);
+    // Clear the input field
+    userInput.value = "";
+
+    // Send the user's message to the AI for processing
+    const result = await chat.sendMessage(userMessage);
+    // Get the response from the AI
+    const response = await result.response;
+    // Get the text content of the response
+    let text = await response.text();
+
+    // Check if the response contains HTML tags
+    const hasHtmlTags = /<\/?[a-z][\s\S]*>/i.test(text);
+    if (hasHtmlTags) {
+        // If HTML tags are found, replace the response with a message indicating that HTML code cannot be provided
+        text = "I'm sorry, I can't provide HTML code.";
+    }
+
+    // Add the AI's response to the chat interface
+    addMessage("answer", text);
+});
+    initChat();
+
+    function addMessage(sender, message) {
+        const chatBody = document.getElementById("chat-body");
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("chat-message", sender === "user" ? "user-message" : "answer-message");
+        messageElement.textContent = message;
+        chatBody.appendChild(messageElement);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    sendBtn.addEventListener("click", async () => {
+        const userMessage = userInput.value.trim();
+        if (userMessage === "") return; // Don't send empty messages
+
+        addMessage("user", userMessage);
+        userInput.value = "";
+
+        const result = await chat.sendMessage(userMessage);
+        const response = await result.response;
+        const text = await response.text();
+
+        addMessage("answer", text);
+    });
+
+    // Minimize chat box functionality
+    const minimizeBtn = document.getElementById('minimizeBtn');
+    minimizeBtn.addEventListener('click', () => {
+        chatContainer.classList.toggle('minimized');
+        if (chatContainer.classList.contains('minimized')) {
+            chatContainer.style.transform = 'translateY(calc(100% - 40px))'; // Adjust this value to change how much of the chat box remains visible when minimized
+            minimizeBtn.textContent = '+';
+        } else {
+            chatContainer.style.transform = 'translateY(0)';
+            minimizeBtn.textContent = '-';
+        }
+    });
+</script>
+</body>
+</html>
